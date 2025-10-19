@@ -33,6 +33,8 @@ public:
 	UInputAction* ElevateAction;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* RollAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* GamePauseAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
 	TSubclassOf<UUserWidget> HUDWidgetClass;
@@ -43,7 +45,12 @@ public:
 	TSubclassOf<UUserWidget> MainMenuWidgetClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Menu")
 	UUserWidget* MainMenuWidgetInstance;
-
+	// 일시정지 메뉴 위젯 추가
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
+	TSubclassOf<UUserWidget> PauseMenuWidgetClass;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Menu")
+	UUserWidget* PauseMenuWidgetInstance;
+	
 	UFUNCTION(BlueprintPure, Category = "HUD")
 	UUserWidget* GetHUDWidget() const;
 
@@ -53,10 +60,24 @@ public:
 	void ShowMainMenu(bool bIsRestart);
 	UFUNCTION(BlueprintCallable, Category = "Menu")
 	void StartGame();
+
+	UFUNCTION(BlueprintCallable, Category = "Menu")
+	void QuitGame();
+	// 일시 정지 관련 함수 추가
+	UFUNCTION(BlueprintCallable, Category = "Pause")
+	void TogglePauseGame();
+	UFUNCTION(BlueprintCallable, Category = "Pause")
+	void ShowPauseMenu();
+	UFUNCTION(BlueprintCallable, Category = "Pause")
+	void HidePauseMenu();
+	UFUNCTION(BlueprintCallable, Category = "Pause")
+	void ResumeGame();
 	
 protected:
 	virtual void BeginPlay() override;
+	virtual void SetupInputComponent() override;
 
 private:
 	APawn* PlayerPawn;
+	bool bIsGamePaused;
 };

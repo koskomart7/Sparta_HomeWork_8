@@ -4,6 +4,7 @@
 #include "SpartaGameState.h"
 
 #include "CoinItem.h"
+#include "SpartaCharacter.h"
 #include "SpartaGameInstance.h"
 #include "SpartaPlayerController.h"
 #include "SpawnVolume.h"
@@ -250,6 +251,20 @@ void ASpartaGameState::UpdateHUD()
 				if (UTextBlock* LevelIndexText = Cast<UTextBlock>(HUDWidget->GetWidgetFromName(TEXT("Level"))))
 				{
 					LevelIndexText->SetText(FText::FromString(FString::Printf(TEXT("Level : %d / %d"), CurrentLevelIndex + 1, MaxLevels)));
+				}
+				// 디버프 UI 업데이트
+				if (APawn* PlayerPawn = PlayerController->GetPawn())
+				{
+					if (ASpartaCharacter* PlayerCharacter = Cast<ASpartaCharacter>(PlayerPawn))
+					{
+						// Character의 GetDebuffStatusText() 호출
+						FString DebuffStatusText = PlayerCharacter->GetDebuffStatusText();
+						// UI 텍스트 블록에 표시
+						if (UTextBlock* DebuffText = Cast<UTextBlock>(HUDWidget->GetWidgetFromName(TEXT("DebuffStatus"))))
+						{
+							DebuffText->SetText(FText::FromString(DebuffStatusText));
+						}
+					}
 				}
 			}
 		}

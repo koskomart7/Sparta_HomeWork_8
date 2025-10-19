@@ -7,7 +7,7 @@
 #include "MineItem.generated.h"
 
 /**
- * 
+ *   지뢰 아이템 - 폭발 시 Slowing + Blind 동시 디버프
  */
 UCLASS()
 class PR_SPARTAPROJECT_API AMineItem : public ABaseItem
@@ -31,6 +31,17 @@ public:
 	float ExplosionRadius;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine")
 	int32 ExplosionDamage;
+
+	// 디버프 설정
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine|Debuff")
+	float SlowDebuffDuration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine|Debuff")
+	float SlowMultiplier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine|Debuff")
+	float BlindDebuffDuration;
+
 
 	bool bHasExploded;
 	FTimerHandle ExplosionTimerHandle;

@@ -7,7 +7,7 @@
 #include "HealingItem.generated.h"
 
 /**
- * 
+ *  치료 아이템 - 20% 확률로 시야 제한 부작용
  */
 UCLASS()
 class PR_SPARTAPROJECT_API AHealingItem : public ABaseItem
@@ -21,5 +21,14 @@ public:
 	int32 HealAmount;
 
 	virtual void ActivateItem(AActor* Activator) override;
-	
+
+protected:
+	// 디버프 발생 확률
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Debuff", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float DebuffChance;
+
+	// 디버프 지속 시간
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Debuff")
+	float DebuffDuration;
+
 };
