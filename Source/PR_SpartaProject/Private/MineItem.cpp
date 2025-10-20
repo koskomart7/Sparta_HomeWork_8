@@ -15,7 +15,7 @@ AMineItem::AMineItem()
 	ExplosionCollision -> SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	ExplosionCollision-> SetupAttachment(Scene);
 	
-	ExplosionDelay = 0.5f;
+	ExplosionDelay = 0.7f;
 	ExplosionRadius = 300.0f;
 	ExplosionDamage = 30.0f;
 	ItemType = "Mine";

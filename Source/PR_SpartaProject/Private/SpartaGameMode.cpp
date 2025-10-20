@@ -37,12 +37,12 @@ void ASpartaGameMode::InitializeWaves()
 			FWaveData Wave2;
 			Wave2.WaveNumber = 2;
 			Wave2.WaveTime = 40.0f;
-			Wave2.ItemsToSpawn = 25;
+			Wave2.ItemsToSpawn = 35;
 
 			FWaveData Wave3;
 			Wave3.WaveNumber = 3;
 			Wave3.WaveTime = 50.0f;
-			Wave3.ItemsToSpawn = 35;
+			Wave3.ItemsToSpawn = 55;
 
 			SpartaGameState->Waves.Add(Wave1);
 			SpartaGameState->Waves.Add(Wave2);
